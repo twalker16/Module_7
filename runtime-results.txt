@@ -1,0 +1,27 @@
+doublerAppend:
+
+|Array Size              ||Runtime  |
+|tinyArray (10)          ||123.5 μs |
+|smallArray (100)        ||125.5 μs |
+|mediumArray (1000)      ||185.8 μs |
+|largeArray (10000)      ||787.8 μs |
+|extraLargeArray (100000)||4.4849 ms|
+
+
+
+doublerInsert:
+
+|Array Size              ||Runtime    |
+|tinyArray (10)          ||12.4 μs    |
+|smallArray (100)        ||11.7 μs    |
+|mediumArray (1000)      ||71.1 μs    |
+|largeArray (10000)      ||926.3 μs   |
+|extraLargeArray (100000)||996.9027 ms|
+
+
+Read over the results, and write a paragraph that explains the pattern you see. How does each function “scale”? Which of the two functions scales better? How can you tell?
+
+For extra credit, do some review / research on why the slower function is so slow, and summarize the reasoning for this.
+
+-Response:
+doublerAppend  scales better to larger arrays than doublerInsert. This is due to the difference between how .push() and .unshift() work in javaScript. .unshift() will take the index of all items already in the array and shift their index by +1, then insert the value passed through unshift into index 0. This happens for every number passed in, so the larger the arrays that you are editing, the more indexes you are changing for a single operation. doublerAppend has a runtime complexity of O(n), so it scales linearly, where doublerInsert has a runtime complexity of O(n^2), so it scales exponentially.
